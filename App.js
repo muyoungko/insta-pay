@@ -40,7 +40,7 @@ class DetailsScreen extends React.Component {
 }
 
 
-const RootStack = createStackNavigator(
+const MainStackNavigator = createStackNavigator(
   {
     Home: HomeScreen,
     Details: DetailsScreen,
@@ -53,6 +53,6 @@ const RootStack = createStackNavigator(
 
 export default class App extends React.Component {
   render() {
-    return <RootStack />;
+    return <MainStackNavigator />;
   }
 }

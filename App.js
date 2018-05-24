@@ -9,7 +9,7 @@ import {
   TouchableWithoutFeedback,
   StyleSheet
 } from 'react-native';
-import { createStackNavigator} from 'react-navigation';
+import { createBottomTabNavigator, createStackNavigator} from 'react-navigation';
 
 import firebase from 'firebase/app'
 import 'firebase/auth'
@@ -21,6 +21,14 @@ import 'firebase/messaging'
 
 
 import LoginScreen from './src/Login.js';
+import MessageScreen from './src/Message.js';
+import MessageListScreen from './src/MessageList.js';
+import ProductListScreen from './src/ProductList.js';
+import MyShopScreen from './src/MyShop.js';
+import OrderScreen from './src/Order.js';
+import ProfitScreen from './src/Profit.js';
+import SettingScreen from './src/Setting.js';
+
 
 
 function __translate(term) {
@@ -58,6 +66,10 @@ class HomeScreen extends React.Component {
     console.log('test');
   }
 
+  static navigationOptions = {
+    tabBarLabel: 'Settings'
+  };
+
   componentDidMount()
   {
     this.setState({
@@ -93,6 +105,9 @@ class DetailsScreen extends React.Component {
   static navigationOptions = {
     title: '상품상세',
   };
+  static navigationOptions = {
+    tabBarLabel: 'ddd'
+  };
 
   render() {
     const { navigate } = this.props.navigation;
@@ -124,11 +139,18 @@ const MainStackNavigator = createStackNavigator(
     Details: DetailsScreen
   },
   {
-    initialRouteName: 'Login',
+    initialRouteName: 'Home',
   }
 );
 
 
+const MyNestedTabNav = createBottomTabNavigator({
+  Message: { screen: MyShopScreen },
+  Product: { screen: ProductListScreen },
+  Order: { screen: OrderScreen },
+  Profit: { screen: ProfitScreen },
+  Setting: { screen: SettingScreen}
+});
 
 export default class App extends React.Component {
   constructor(){
@@ -152,12 +174,15 @@ export default class App extends React.Component {
 
     db.ref('/seller/muyoungko217/userName').once('value').then(function(snapshot) {
       //var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
-      alert(snapshot.val());
+      //alert(snapshot.val());
     });
   }
+
+
+
   render() {
     return (
-      <LoginScreen/>
+      <MyNestedTabNav/>
     );
   }
 }

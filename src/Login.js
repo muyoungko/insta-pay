@@ -57,7 +57,7 @@ class LoginScreen extends React.Component {
     var params = queryString.parse(urlObject.query);
     if(urlObject.pathname == '/talkin' && params.code)
     {
-      alert('성공');
+      //alert('성공');
     }
     console.log(webViewState.url);
   }

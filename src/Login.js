@@ -29,7 +29,7 @@ class LoginScreen extends React.Component {
 
     return (
       <WebView
-        source={{uri: 'https://www.instagram.com/oauth/authorize/?client_id=c99f61f0de284159a05576d4b34005bc&redirect_uri=http%3A%2F%2Fwww.sering.co.kr%2Ftalkin%3Ffrom%3Dapp&response_type=code'}}
+        source={{uri: 'https://www.instagram.com/oauth/authorize/?client_id=c99f61f0de284159a05576d4b34005bc&redirect_uri=http%3A%2F%2Finstapay-3aae4.firebaseapp.com%2Ftalkin%3Ffrom%3Dapp&response_type=code'}}
         onNavigationStateChange={this._onNavigationStateChange.bind(this)}
         javaScriptEnabled = {true}
         domStorageEnabled = {true}

@@ -10,7 +10,18 @@ import {
   StyleSheet
 } from 'react-native';
 import { createStackNavigator} from 'react-navigation';
+
+import firebase from 'firebase/app'
+import 'firebase/auth'
+import 'firebase/database'
+import 'firebase/firestore'
+import 'firebase/storage'
+import 'firebase/messaging'
+
+
+
 import LoginScreen from './src/Login.js';
+
 
 function __translate(term) {
 
@@ -120,7 +131,33 @@ const MainStackNavigator = createStackNavigator(
 
 
 export default class App extends React.Component {
+  constructor(){
+    super();
+
+    let config = {
+      apiKey: "AIzaSyBRkuDWWYp1ZZybWOmanPgh0J47j746Rc8",
+      authDomain: "instapay-3aae4.firebaseapp.com",
+      databaseURL: "https://instapay-3aae4.firebaseio.com",
+      projectId: "instapay-3aae4",
+      storageBucket: "instapay-3aae4.appspot.com",
+      messagingSenderId: "377294303001",
+    };
+
+    firebase.initializeApp(config);
+  }
+  componentDidMount()
+  {
+    const db = firebase.database();
+    const dbRef = db.ref().child('seller').child('muyoungko217').child('userName');
+
+    db.ref('/seller/muyoungko217/userName').once('value').then(function(snapshot) {
+      //var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+      alert(snapshot.val());
+    });
+  }
   render() {
-    return <LoginScreen/>;
+    return (
+      <LoginScreen/>
+    );
   }
 }

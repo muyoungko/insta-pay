@@ -26,9 +26,11 @@ class MessageList extends React.Component {
   render() {
 
     return (
-      <Text>
-        고객이 문의한 내용들
-      </Text>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text>
+          고객이 문의한 내용들
+        </Text>
+      </View>
     );
   }
 

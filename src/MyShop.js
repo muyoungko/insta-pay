@@ -26,9 +26,11 @@ class MyShop extends React.Component {
   render() {
 
     return (
-      <Text>
-        내 쇼핑몰 미리보기
-      </Text>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text>
+          내 쇼핑몰 미리보기
+        </Text>
+      </View>
     );
   }
 

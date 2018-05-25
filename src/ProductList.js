@@ -26,9 +26,11 @@ class ProductList extends React.Component {
   render() {
 
     return (
-      <Text>
-        상품목록
-      </Text>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text>
+          상품목록
+        </Text>
+      </View>
     );
   }
 

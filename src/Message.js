@@ -22,9 +22,11 @@ class Message extends React.Component {
   render() {
 
     return (
-      <Text>
-        고객과의 메세지 창
-      </Text>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text>
+          고객과의 메세지 창
+        </Text>
+      </View>
     );
   }
 

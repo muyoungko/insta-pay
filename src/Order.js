@@ -26,9 +26,11 @@ class Order extends React.Component {
   render() {
 
     return (
-      <Text>
-        처리해야할 주문 목록
-      </Text>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text>
+          처리해야할 주문 목록
+        </Text>
+      </View>
     );
   }
 

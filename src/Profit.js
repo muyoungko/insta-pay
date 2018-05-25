@@ -26,9 +26,11 @@ class Profit extends React.Component {
   render() {
 
     return (
-      <Text>
-        완료된 주문 매출건 수 월별 매출 등이 나옴.
-      </Text>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text>
+          완료된 주문 매출건 수 월별 매출 등이 나옴.
+        </Text>
+      </View>
     );
   }
 

@@ -26,9 +26,11 @@ class Setting extends React.Component {
   render() {
 
     return (
-      <Text>
-        계좌, 주문완료 인삿말 등을 입력함
-      </Text>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text>
+          계좌, 주문완료 인삿말 등을 입력함
+        </Text>
+      </View>
     );
   }
 

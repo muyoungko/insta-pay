@@ -28,6 +28,7 @@ import MyShopScreen from './src/MyShop.js';
 import OrderScreen from './src/Order.js';
 import ProfitScreen from './src/Profit.js';
 import SettingScreen from './src/Setting.js';
+import TabBarScreen from './src/TabBar.js';
 
 
 
@@ -182,7 +183,7 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <MyNestedTabNav/>
+      <TabBarScreen/>
     );
   }
 }

@@ -8,17 +8,12 @@ class LoginScreen extends React.Component {
   constructor()
   {
     super();
-    this.state = {test : 'asdfsdfs'};
-    console.log('test');
+    this.state = {authorized : false};
   }
 
   componentDidMount()
   {
-    this.setState({
-          test: 'false'
-        }, function(){
 
-        });
   }
 
   static navigationOptions = {
@@ -35,7 +30,6 @@ class LoginScreen extends React.Component {
         domStorageEnabled = {true}
         injectedJavaScript = {this.state.cookie}
         startInLoadingState={true}
-        style={{marginTop:20}}
       />
     );
   }
@@ -57,7 +51,15 @@ class LoginScreen extends React.Component {
     var params = queryString.parse(urlObject.query);
     if(urlObject.pathname == '/talkin' && params.code)
     {
-      //alert('성공');
+      if(!this.state.authorized)
+      {
+        this.props.navigation.replace('TabBar');
+        this.setState({
+              authorized: true
+            }, function(){
+
+            });
+      }
     }
     console.log(webViewState.url);
   }

@@ -7,7 +7,9 @@ import {
   NativeModules,
   Animated,
   TouchableWithoutFeedback,
-  StyleSheet
+  StyleSheet,
+  Platform,
+  StatusBar,
 } from 'react-native';
 import { createBottomTabNavigator, createStackNavigator} from 'react-navigation';
 
@@ -136,11 +138,14 @@ class DetailsScreen extends React.Component {
 const MainStackNavigator = createStackNavigator(
   {
     Login: LoginScreen,
-    Home: HomeScreen,
-    Details: DetailsScreen
+    TabBar: TabBarScreen,
   },
   {
-    initialRouteName: 'Home',
+    initialRouteName: 'Login',
+    headerMode: 'none',
+    navigationOptions: {
+        headerVisible: false,
+    }
   }
 );
 
@@ -183,7 +188,57 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <TabBarScreen/>
+      <View style={styles.container}>
+        <StatusBar
+            barStyle={
+              /* $FlowFixMe */
+              Platform.OS === 'ios' ? 'light-content' : 'light-content'
+            }
+          />
+        <MainStackNavigator/>
+      </View>
     );
   }
 }
+
+
+
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#eceff1',
+  },
+  statusbar: {
+    height: Platform.OS === 'ios' ? 20 : 25,
+  },
+  appbar: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    height: Platform.OS === 'ios' ? 44 : 56,
+    borderBottomColor: 'rgba(0, 0, 0, 0.1)',
+  },
+  title: {
+    flex: 1,
+    margin: 16,
+    textAlign: Platform.OS === 'ios' ? 'center' : 'left',
+    fontSize: 18,
+    color: '#fff',
+  },
+  button: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: 56,
+    padding: Platform.OS === 'ios' ? 12 : 16,
+  },
+  touchable: {
+    padding: 16,
+    backgroundColor: '#fff',
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(0, 0, 0, .06)',
+  },
+  item: {
+    fontSize: 16,
+    color: '#333',
+  },
+});

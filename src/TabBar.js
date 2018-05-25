@@ -41,10 +41,16 @@ export default class TapBar extends React.Component<*, State> {
   static appbarElevation = 4;
   static statusBarStyle = 'dark-content';
 
+  static navigationOptions = {
+    title: 'Welcome'
+    //, header: { visible:false } 헤더 숨기고 싶은데 에러남
+  };
+
+
   state = {
     index: 0,
     routes: [
-      { key: 'myShop', title: 'Shop', icon: 'ios-people' },
+      { key: 'myShop', title: '내쇼핑몰', icon: 'ios-people' },
       { key: 'productList', title: '상품', icon: 'ios-albums' },
       { key: 'order', title: '주문', icon: 'ios-paper' },
       { key: 'profit', title: '성과', icon: 'ios-chatboxes' },

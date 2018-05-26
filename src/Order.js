@@ -1,13 +1,13 @@
 import React from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { View, Text, FlatList, StyleSheet, TouchableHighlight } from 'react-native';
 import {NavigationActions} from 'react-navigation';
 import url from 'url';
 import queryString from 'query-string';
 
 const CONTACTS = [
-  { name: 'Marissa Castillo', number: 7766398169 },
-  { name: 'Denzel Curry', number: 9394378449 },
-  { name: 'Miles Ferguson', number: 8966872888 },
+  { name: '상품 주문', number: 7766398169 },
+  { name: '주문 할게요', number: 9394378449 },
+  { name: '노란색으로 포장해주세요', number: 8966872888 },
 ];
 
 class Order extends React.Component {
@@ -29,16 +29,28 @@ class Order extends React.Component {
     tabBarLabel: '주문'
   };
 
+  goToNextScreen()
+  {
+    //alert(this.props.keys());
+    console.log(this.props);
+      //this.props.navigation.push('Message');
+  }
+
   _renderItem = ({ item }) => (
-    <View style={styles.item}>
-      <View style={styles.avatar}>
-        <Text style={styles.letter}>{item.name.slice(0, 1).toUpperCase()}</Text>
-      </View>
-      <View style={styles.details}>
-        <Text style={styles.name}>{item.name}</Text>
-        <Text style={styles.number}>{item.number}</Text>
-      </View>
-    </View>
+      <TouchableHighlight onPress={() => this.goToNextScreen()}>
+        <View style={styles.item}>
+
+            <View style={styles.avatar}>
+              <Text style={styles.letter}>{item.name.slice(0, 1).toUpperCase()}</Text>
+            </View>
+            <View style={styles.details}>
+              <Text style={styles.name}>{item.name}</Text>
+              <Text style={styles.number}>{item.number}</Text>
+            </View>
+
+        </View>
+      </TouchableHighlight>
+
   );
 
   _ItemSeparator = () => <View style={styles.separator} />;

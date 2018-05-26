@@ -139,6 +139,7 @@ const MainStackNavigator = createStackNavigator(
   {
     Login: LoginScreen,
     TabBar: TabBarScreen,
+    Message: MessageScreen,
   },
   {
     initialRouteName: 'Login',

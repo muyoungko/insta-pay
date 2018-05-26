@@ -4,6 +4,8 @@ import {NavigationActions} from 'react-navigation';
 import url from 'url';
 import queryString from 'query-string';
 
+const GLOBAL = require('./Global.js');
+
 class LoginScreen extends React.Component {
   constructor()
   {
@@ -51,9 +53,24 @@ class LoginScreen extends React.Component {
     var params = queryString.parse(urlObject.query);
     if(urlObject.pathname == '/talkin' && params.code)
     {
+      GLOBAL.CODE = params.code;
       if(!this.state.authorized)
       {
         this.props.navigation.replace('TabBar');
+        // var ig = require('instagram-node').instagram();
+        // ig.use({ access_token: GLOBAL.CODE });
+        // ig.use({ client_id: 'c99f61f0de284159a05576d4b34005bc',
+        //  client_secret: 'a50de48865f8436ba1298d420a1f7213' });
+
+        // const Instagram = require('node-instagram').default;
+        // // Create a new instance.
+        // const instagram = new Instagram({
+        //   clientId: 'c99f61f0de284159a05576d4b34005bc',
+        //   clientSecret: 'a50de48865f8436ba1298d420a1f7213',
+        //   accessToken: GLOBAL.CODE,
+        // });
+
+
         this.setState({
               authorized: true
             }, function(){
@@ -61,7 +78,7 @@ class LoginScreen extends React.Component {
             });
       }
     }
-    console.log(webViewState.url);
+    //console.log(webViewState.url);
   }
 }
 

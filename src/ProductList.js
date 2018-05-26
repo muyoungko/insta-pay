@@ -3,6 +3,7 @@ import { View, Text, Button, WebView} from 'react-native';
 import {NavigationActions} from 'react-navigation';
 import url from 'url';
 import queryString from 'query-string';
+const GLOBAL = require('./Global.js');
 
 class ProductList extends React.Component {
   constructor()
@@ -12,7 +13,7 @@ class ProductList extends React.Component {
 
   componentDidMount()
   {
-
+    
   }
 
   static navigationOptions = {
@@ -28,7 +29,7 @@ class ProductList extends React.Component {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Text>
-          상품목록
+          상품목록 - {GLOBAL.CODE}
         </Text>
       </View>
     );

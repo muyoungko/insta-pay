@@ -3,6 +3,7 @@ import { View, Text, FlatList, StyleSheet, TouchableHighlight } from 'react-nati
 import {NavigationActions} from 'react-navigation';
 import url from 'url';
 import queryString from 'query-string';
+const Global = require('./Global.js');
 
 const CONTACTS = [
   { name: '상품 주문', number: 7766398169 },
@@ -33,7 +34,7 @@ class Order extends React.Component {
   {
     //alert(this.props.keys());
     console.log(this.props);
-      //this.props.navigation.push('Message');
+    Global.navigation.push('Message');
   }
 
   _renderItem = ({ item }) => (

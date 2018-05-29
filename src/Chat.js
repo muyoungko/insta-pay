@@ -17,7 +17,7 @@ const MESSAGES = [
   'make me a sandwich',
 ];
 
-export default class Message extends React.Component<{}> {
+export default class Albums extends React.Component<{}> {
   render() {
     return (
       <View style={styles.container}>
@@ -37,8 +37,8 @@ export default class Message extends React.Component<{}> {
                   style={styles.avatar}
                   source={
                     odd
-                      ? require('../assets/avatar-2.png')
-                      : require('../assets/avatar-1.png')
+                      ? require('../../assets/avatar-2.png')
+                      : require('../../assets/avatar-1.png')
                   }
                 />
                 <View

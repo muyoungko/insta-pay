@@ -24,6 +24,7 @@ import SettingScreen from './Setting.js';
 
 
 
+
 const AnimatedIcon = Animated.createAnimatedComponent(Ionicons);
 
 type State = NavigationState<
@@ -133,15 +134,16 @@ export default class TapBar extends React.Component<*, State> {
 
   render() {
     return (
-      <TabViewAnimated
-        style={[styles.container, this.props.style]}
-        navigationState={this.state}
-        renderScene={this._renderScene}
-        renderFooter={this._renderFooter}
-        onIndexChange={this._handleIndexChange}
-        animationEnabled={false}
-        swipeEnabled={false}
-      />
+
+        <TabViewAnimated
+          style={[styles.container, this.props.style]}
+          navigationState={this.state}
+          renderScene={this._renderScene}
+          renderFooter={this._renderFooter}
+          onIndexChange={this._handleIndexChange}
+          animationEnabled={false}
+          swipeEnabled={false}
+        />
     );
   }
 }

@@ -3,8 +3,8 @@ import { View, Text, Button, WebView} from 'react-native';
 import {NavigationActions} from 'react-navigation';
 import url from 'url';
 import queryString from 'query-string';
-
-const GLOBAL = require('./Global.js');
+import InstaApi from './instaapi/InstaApi.js';
+const Global = require('./Global.js');
 
 class LoginScreen extends React.Component {
   constructor()
@@ -53,7 +53,8 @@ class LoginScreen extends React.Component {
     var params = queryString.parse(urlObject.query);
     if(urlObject.pathname == '/talkin' && params.code)
     {
-      GLOBAL.CODE = params.code;
+      Global.CODE = params.code;
+      Global.navigation = this.props.navigation;
       if(!this.state.authorized)
       {
         this.props.navigation.replace('TabBar');
@@ -70,6 +71,9 @@ class LoginScreen extends React.Component {
         //   accessToken: GLOBAL.CODE,
         // });
 
+        console.log(InstaApi);
+        InstaApi.init('c99f61f0de284159a05576d4b34005bc', 'a50de48865f8436ba1298d420a1f7213', GLOBAL.CODE);
+        
 
         this.setState({
               authorized: true

@@ -193,7 +193,7 @@ export default class App extends React.Component {
         <StatusBar
             barStyle={
               /* $FlowFixMe */
-              Platform.OS === 'ios' ? 'light-content' : 'light-content'
+              Platform.OS === 'ios' ? 'dark-content' : 'light-content'
             }
           />
         <MainStackNavigator/>
@@ -208,7 +208,7 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#eceff1',
+     flexDirection: 'column',
   },
   statusbar: {
     height: Platform.OS === 'ios' ? 20 : 25,

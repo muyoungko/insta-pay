@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Button, WebView} from 'react-native';
+import { View, Text, Button, WebView, StyleSheet} from 'react-native';
 import {NavigationActions} from 'react-navigation';
 import url from 'url';
 import queryString from 'query-string';
@@ -24,17 +24,41 @@ class Profit extends React.Component {
   };
 
   render() {
-
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>
-          완료된 주문 매출건 수 월별 매출 등이 나옴.
+      <View style={styles.container}>
+        <Text style={styles.welcome, {backgroundColor:'#ff0000'}}>
+          Welcome to the React Native Playground!
         </Text>
+        <View style={[styles.overlay, { height: 360}]} />
       </View>
     );
   }
 
 }
+
+var styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+  welcome: {
+    fontSize: 20,
+    margin: 10,
+  },
+  // Flex to fill, position absolute,
+  // Fixed left/top, and the width set to the window width
+  overlay: {
+    flex: 1,
+    position: 'absolute',
+    right: 0,
+    bottom: 0,
+    opacity: 0.5,
+    backgroundColor: 'black',
+    width: 300
+  }
+});
 
 
 export default Profit;

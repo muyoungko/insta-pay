@@ -3,6 +3,7 @@ import { View, Text, FlatList, StyleSheet, TouchableHighlight } from 'react-nati
 import {NavigationActions} from 'react-navigation';
 import url from 'url';
 import queryString from 'query-string';
+import Util from './util/Util.js';
 const Global = require('./Global.js');
 
 const CONTACTS = [
@@ -63,7 +64,7 @@ class Order extends React.Component {
         keyExtractor={(item, i) => String(i)}
         renderItem={this._renderItem}
         ItemSeparatorComponent={this._ItemSeparator}
-        style={{marginTop:25}}
+        style={{marginTop:Util.getStatusBarHeight()}}
       />
     );
   }

@@ -57,14 +57,10 @@ class ProductList extends React.Component<{}> {
         >
           {COVERS.map((source, i) => (
             <TouchableHighlight key={i} onPress={(key) => this.onClickItem(key)}>
-              <View style={{}}>
+              <View style={{flex:1}}>
                 <Image key={i} source={source} style={styles.cover} onPress={this.onClickItem} />
-                <View style={{position: 'absolute', marginTop: 1.5, marginLeft: 1.5}}>
-                  <Text style={{position: 'absolute', backgroundColor: '#00000044', fontSize:15, color:'#ffffff'}}> 21000 </Text>
-                </View>
-                <View source={source} style={styles.cover, {flex: 1, position: 'absolute', backgroundColor: '#ff000044'}} >
-                  <Text style={styles.cover, {backgroundColor: '#ff000044'}}></Text>
-                </View>
+                <Text style={{position: 'absolute', margin:1.5, backgroundColor: '#00000044', right:0, bottom:0, fontSize:15, color:'#ffffff'}}> 21000 </Text>
+                <View style={styles.cover, {flex:1, opacity: 0.5, backgroundColor: 'red',position: 'absolute'}}></View>
               </View>
             </TouchableHighlight>
           ))}

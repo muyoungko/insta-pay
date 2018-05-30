@@ -63,7 +63,7 @@ class Order extends React.Component {
         keyExtractor={(item, i) => String(i)}
         renderItem={this._renderItem}
         ItemSeparatorComponent={this._ItemSeparator}
-        style={{marginTop:20}}
+        style={{marginTop:25}}
       />
     );
   }

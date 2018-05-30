@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { TabViewAnimated, SceneMap } from 'react-native-tab-view';
 import { Ionicons } from '@expo/vector-icons';
+import Util from './util/Util.js';
 
 import type { Route, NavigationState } from 'react-native-tab-view/types';
 
@@ -51,7 +52,7 @@ export default class TapBar extends React.Component<*, State> {
   state = {
     index: 0,
     routes: [
-      { key: 'myShop', title: '내쇼핑몰', icon: 'ios-people' },
+      { key: 'myShop', title: '쇼핑몰', icon: 'ios-people' },
       { key: 'productList', title: '상품', icon: 'ios-albums' },
       { key: 'order', title: '주문', icon: 'ios-paper' },
       { key: 'profit', title: '성과', icon: 'ios-chatboxes' },
@@ -181,9 +182,9 @@ const styles = StyleSheet.create({
     color: '#939393',
   },
   label: {
-    fontSize: 10,
-    marginTop: 3,
-    marginBottom: 1.5,
+    fontSize: Util.getFontSize(13),
+    marginTop: 0,
+    marginBottom: 5,
     backgroundColor: 'transparent',
   },
 });

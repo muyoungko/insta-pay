@@ -4,6 +4,7 @@ import {NavigationActions} from 'react-navigation';
 import url from 'url';
 import queryString from 'query-string';
 import InstaApi from './instaapi/InstaApi.js';
+import Util from './util/Util.js';
 const GLOBAL = require('./Global.js');
 
 const COVERS = [
@@ -46,8 +47,9 @@ class ProductList extends React.Component<{}> {
     return (
       <View style={{backgroundColor: '#ffffff', flex:1}}>
 
-        <View style={{marginTop: 20, height:54, flexDirection: 'column', justifyContent: 'center', alignItems:'center'}}>
-          <Text style={{fontSize:20}}> 인스타 사진 중에서 상품을 선택해주세요 </Text>
+        <View style={{marginTop: Util.getStatusBarHeight(), height:54, flexDirection: 'column', justifyContent: 'center', alignItems:'center'}}>
+          <Text style={{fontSize:Util.getFontSize(20), color:'#222222'}}> 인스타 사진 중에서 상품을 선택해주세요 </Text>
+          <Text style={{fontSize:Util.getFontSize(16), color:'#888888'}}> 쇼핑몰에 상품으로 추가됩니다 </Text>
         </View>
         <ScrollView
           style={styles.container}
@@ -55,10 +57,13 @@ class ProductList extends React.Component<{}> {
         >
           {COVERS.map((source, i) => (
             <TouchableHighlight key={i} onPress={(key) => this.onClickItem(key)}>
-              <View style={{flex: 1}}>
+              <View style={{}}>
                 <Image key={i} source={source} style={styles.cover} onPress={this.onClickItem} />
-                <View style={{flex: 1, position: 'absolute'}}>
-                  <Text style={{backgroundColor: '#00000044', fontSize:15, color:'#ffffff'}}> 21000 </Text>
+                <View style={{position: 'absolute', marginTop: 1.5, marginLeft: 1.5}}>
+                  <Text style={{position: 'absolute', backgroundColor: '#00000044', fontSize:15, color:'#ffffff'}}> 21000 </Text>
+                </View>
+                <View source={source} style={styles.cover, {flex: 1, position: 'absolute', backgroundColor: '#ff000044'}} >
+                  <Text style={styles.cover, {backgroundColor: '#ff000044'}}></Text>
                 </View>
               </View>
             </TouchableHighlight>

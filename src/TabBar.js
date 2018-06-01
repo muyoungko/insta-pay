@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
   tabbar: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: '#fafafa',
+    backgroundColor: '#ffffff',
   },
   tab: {
     flex: 1,

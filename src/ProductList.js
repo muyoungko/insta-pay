@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Button, WebView, ScrollView, Image, Dimensions, StyleSheet, TouchableHighlight } from 'react-native';
+import { Modal, View, Text, Button, WebView, ScrollView, Image, Dimensions, StyleSheet, TouchableHighlight } from 'react-native';
 import {NavigationActions} from 'react-navigation';
 import url from 'url';
 import queryString from 'query-string';
@@ -14,29 +14,20 @@ class ProductList extends React.Component<{}> {
   {
     super();
     this.state = {
-      data : []
+      data : [],
     };
   }
 
   componentDidMount()
   {
-    var url ='https://api.instagram.com/v1/users/self/media/recent/?access_token=';
-    url += Global.CODE;
 
-
-    fetch(url)
-      .then((response) => response.json())
-      .then((responseJson) => {
-        console.log('------------');
-        //console.log(responseJson.data);
-
-        this.setState({
-          data : responseJson.data
-        });
-      })
-      .catch((error) => {
-        console.log(error);
+    var self = this;
+    Logic.selectProductCandidateFromShop('muyoungko217', function(recents){
+      console.log(recents);
+      self.setState({
+        data : recents
       });
+    });
 
 
   }
@@ -51,12 +42,12 @@ class ProductList extends React.Component<{}> {
 
   onClickItem(index)
   {
-    console.log('click');
+
   }
 
   render() {
     return (
-      <View style={{backgroundColor: '#ffffff', flex:1}}>
+      <View style={{ backgroundColor: '#ffffff', flex:1}}>
 
         <View style={{marginTop: Util.getStatusBarHeight(), height:54, flexDirection: 'column', justifyContent: 'center', alignItems:'center'}}>
           <Text style={{fontSize:Util.getFontSize(20), color:'#222222'}}> 인스타 사진 중에서 상품을 선택해주세요 </Text>
@@ -71,8 +62,17 @@ class ProductList extends React.Component<{}> {
               <View style={{flex:1}}>
                 <Image key={i} source={{uri:item.images.low_resolution.url}} style={styles.cover} onPress={this.onClickItem} />
 
-                <Text style={{position: 'absolute', margin:3, backgroundColor: '#00000044', right:0, bottom:0, fontSize:Util.getFontSize(15), color:'#ffffff'}}>
-                {item.id}</Text>
+
+                {(() => {
+                  if(item.price)
+                  {
+                    return (
+                      <Text style={{position: 'absolute', margin:3, backgroundColor: '#00000044', right:0, bottom:0, fontSize:Util.getFontSize(15), color:'#ffffff'}}>
+                      {item.price}</Text>
+                    )
+                  }
+                })()}
+
 
                 {(() => {
                   if(item.product)
@@ -90,6 +90,10 @@ class ProductList extends React.Component<{}> {
             </TouchableHighlight>
           ))}
         </ScrollView>
+
+
+
+
       </View>
     );
   }

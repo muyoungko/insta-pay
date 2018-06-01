@@ -45,54 +45,30 @@ export default class Logic{
 
   }
 
-  //user(고객 or 셀러)를 upsert하고 정보를 가져온다.
   //static upsertAndGetUser(){}
-
-  //shop을 upsert하고 정보를 가져온다.
   //static upsertAndGetShop(user){}
-
-  //shop의 입금 계좌번호를 입력한다.
   static updateShopBankAcountInfo(){}
-  //shop의 인삿말을 입력한다.
   static updateShopHelloInfo(){}
 
-  //shop에 product를 upsert한다.
+
   static upsertProductToShop(){}
-  //shop에 product를 제거 한다.
   static removeProductFromShop(){}
-  //상품 목록을 가져온다.
-  static selectProductFromShop(){}
-  //상품과 상품 후보 목록을 가져온다.
-  static selectProductCandidateFromShop(){}
-  //샵의 구매 목록을 가져온다.
+  //static selectProductFromShop(){}
+  //static selectProductCandidateFromShop(){}
   static selectOrderListFromShop(seller){}
-  //구매 상세를 가져온다.
   static selectOrderDetail(orderid){}
-  //구매를 상태를 바꾼다.
   static changeOrderStateFromShop(){}
-  //셀러의 매출 목록을 가져온다.
   static selectProfitFromShop(seller){}
 
-  //상품 문의 채팅방을 만든다.
   static upsertChat(){}
-  //채팅 목록을 본다
   static selectChatList(){}
-  //채팅 대화 목록을 본다
   static selectMessageList(){}
-  //채팅을 날린다.
   static sendMessage(){}
-
-  //유저의 배송지 정보를 입력한다.
   static addDelivery(){}
-  //유저의 배송지 정보를 불러온다.
   static selectDeliveryListFromUser(){}
-  //사용자의 최근 본 상품 목록을 가져온다.
   static selectRecentProductList(seller, shop){}
-  //사용자의 최근 본 상품을 추가한다
   static addRecentProduct(seller){}
-  //구매를 업서트 한다.
   static upsertOrderFromShop(){}
-  //사용자의 구매 목록을 가져온다.
   static selectOrderListFromUser(seller){}
 
 
@@ -138,14 +114,39 @@ export default class Logic{
     });
   }
 
+  static selectProductFromShop(shopName, func){
+    const db = firebase.database();
+    db.ref('shops/'+shopName).once('value').then(function(snapshot) {
+      func(snapshot.val());
+    });
+  }
+
+  static selectProductCandidateFromShop(shop, funca){
+    const db = firebase.database();
+    console.log('called ' + shop);
+    db.ref('shops/'+shop+'/products').once('value').then(function(snapshot) {
+      InstaApi.recent(function(recents, e){
+        var products = snapshot.val();
+
+        // var recents = recents.data;
+        // for(var i=0;i<recents.length;i++)
+        // {
+        //
+        // }
+
+        funca(recents.data, e);
+      });
+    });
+  }
+
   static say()
   {
-    const db = firebase.database();
+    // const db = firebase.database();
     // const dbRef = db.ref().child('seller').child('muyoungko217').child('userName');
     //
     // db.ref('/seller/muyoungko217/userName').once('value').then(function(snapshot) {
     //   //var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
-    //   //alert(snapshot.val());
+    //   alert(snapshot.val());
     // });
   }
 

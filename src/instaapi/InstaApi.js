@@ -33,4 +33,30 @@ export default class InstaApi{
         func(null, error);
       });
   }
+
+  static recent(func)
+  {
+    var url ='https://api.instagram.com/v1/users/self/media/recent/?access_token=';
+    url += this.code;
+    //console.log('insta recent called');
+    fetch(url)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        //console.log('insta recent called - success');
+        try{
+          func(responseJson);
+        }catch(e)
+        {
+          console.log(e);
+        }
+      })
+      .catch((error) => {
+        try{
+          func(null, error);
+        }catch(e)
+        {
+          console.log(e);
+        }
+      });
+  }
 };

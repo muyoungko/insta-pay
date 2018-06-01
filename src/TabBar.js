@@ -183,7 +183,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: Util.getFontSize(13),
-    marginTop: 0,
+    marginTop: 2,
     marginBottom: 5,
     backgroundColor: 'transparent',
   },

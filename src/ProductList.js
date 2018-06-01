@@ -5,27 +5,39 @@ import url from 'url';
 import queryString from 'query-string';
 import InstaApi from './instaapi/InstaApi.js';
 import Util from './util/Util.js';
-const GLOBAL = require('./Global.js');
+import Logic from './logic/Logic.js';
+const Global = require('./Global.js');
 
-const COVERS = [
-  require('../assets/album-art-1.jpg'),
-  require('../assets/album-art-2.jpg'),
-  require('../assets/album-art-3.jpg'),
-  require('../assets/album-art-4.jpg'),
-  require('../assets/album-art-5.jpg'),
-  require('../assets/album-art-6.jpg'),
-  require('../assets/album-art-7.jpg'),
-  require('../assets/album-art-8.jpg'),
-];
 
 class ProductList extends React.Component<{}> {
   constructor()
   {
     super();
+    this.state = {
+      data : []
+    };
   }
 
   componentDidMount()
   {
+    var url ='https://api.instagram.com/v1/users/self/media/recent/?access_token=';
+    url += Global.CODE;
+
+
+    fetch(url)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        console.log('------------');
+        //console.log(responseJson.data);
+
+        this.setState({
+          data : responseJson.data
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
 
   }
 
@@ -37,13 +49,12 @@ class ProductList extends React.Component<{}> {
     tabBarLabel: '상품'
   };
 
-  onClickItem(key)
+  onClickItem(index)
   {
-    console.log('click ' + key);
+    console.log('click');
   }
 
   render() {
-
     return (
       <View style={{backgroundColor: '#ffffff', flex:1}}>
 
@@ -55,12 +66,26 @@ class ProductList extends React.Component<{}> {
           style={styles.container}
           contentContainerStyle={styles.content}
         >
-          {COVERS.map((source, i) => (
-            <TouchableHighlight key={i} onPress={(key) => this.onClickItem(key)}>
+          {this.state.data.map((item, i) => (
+            <TouchableHighlight key={i} onPress={(key) => this.onClickItem(i)}>
               <View style={{flex:1}}>
-                <Image key={i} source={source} style={styles.cover} onPress={this.onClickItem} />
-                <Text style={{position: 'absolute', margin:1.5, backgroundColor: '#00000044', right:0, bottom:0, fontSize:15, color:'#ffffff'}}> 21000 </Text>
-                <View style={styles.cover, {flex:1, opacity: 0.5, backgroundColor: 'red',position: 'absolute'}}></View>
+                <Image key={i} source={{uri:item.images.low_resolution.url}} style={styles.cover} onPress={this.onClickItem} />
+
+                <Text style={{position: 'absolute', margin:3, backgroundColor: '#00000044', right:0, bottom:0, fontSize:Util.getFontSize(15), color:'#ffffff'}}>
+                {item.id}</Text>
+
+                {(() => {
+                  if(item.product)
+                  {
+                    return (
+                      <View style={{borderRadius: 0,
+                        borderWidth: 2,
+                        borderColor: '#ff0000', width:Dimensions.get('window').width/3-3,
+                        height:Dimensions.get('window').width/3-3,
+                        position: 'absolute', margin:1.5}}/>
+                    )
+                  }
+                })()}
               </View>
             </TouchableHighlight>
           ))}
@@ -74,8 +99,8 @@ class ProductList extends React.Component<{}> {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#ffffff'
-    ,flex : 1
+    backgroundColor: '#ffffff',
+    flex : 1,
   },
   content: {
     flexDirection: 'row',

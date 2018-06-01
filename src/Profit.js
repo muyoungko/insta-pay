@@ -1,64 +1,153 @@
-import React from 'react';
-import { View, Text, Button, WebView, StyleSheet} from 'react-native';
-import {NavigationActions} from 'react-navigation';
-import url from 'url';
-import queryString from 'query-string';
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Button } from 'react-native';
+import PopupDialog, {
+  DialogTitle,
+  DialogButton,
+  SlideAnimation,
+  ScaleAnimation,
+  FadeAnimation,
+} from 'react-native-popup-dialog';
 
-class Profit extends React.Component {
-  constructor()
-  {
-    super();
-  }
+const slideAnimation = new SlideAnimation({ slideFrom: 'bottom' });
+const scaleAnimation = new ScaleAnimation();
+const fadeAnimation = new FadeAnimation({ animationDuration: 150 });
 
-  componentDidMount()
-  {
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  dialogContentView: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  navigationBar: {
+    borderBottomColor: '#b5b5b5',
+    borderBottomWidth: 0.5,
+    backgroundColor: '#ffffff',
+  },
+  navigationTitle: {
+    padding: 10,
+  },
+  navigationButton: {
+    padding: 10,
+  },
+  navigationLeftButton: {
+    paddingLeft: 20,
+    paddingRight: 40,
+  },
+  navigator: {
+    flex: 1,
+    // backgroundColor: '#000000',
+  },
+});
 
-  }
-
-  static navigationOptions = {
-    title: '매출'
+export default class App extends Component {
+  state = {
+    dialogShow: false,
   };
 
-  static navigationOptions = {
-    tabBarLabel: '성과'
-  };
+  showScaleAnimationDialog = () => {
+    this.scaleAnimationDialog.show();
+  }
+
+  showSlideAnimationDialog = () => {
+    this.slideAnimationDialog.show();
+  }
+
+  showFadeAnimationDialog = () => {
+    this.fadeAnimationDialog.show();
+  }
+
+  renderScene = () => (
+    <View style={styles.container}>
+      <Button
+        title="Show Dialog - Default Animation"
+        onPress={this.showFadeAnimationDialog}
+      />
+
+      <Button
+        title="Show Dialog - Scale Animation"
+        onPress={this.showScaleAnimationDialog}
+      />
+
+      <Button
+        title="Show Dialog - Slide Animation"
+        onPress={this.showSlideAnimationDialog}
+      />
+    </View>
+    )
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome, {backgroundColor:'#ff0000'}}>
-          Welcome to the React Native Playground!
-        </Text>
-        <View style={[styles.overlay, { height: 360}]} />
+      <View style={{ flex: 1 }}>
+        <View style={styles.container}>
+          <Button
+            title="Show Dialog - Default Animation"
+            onPress={this.showFadeAnimationDialog}
+          />
+
+          <Button
+            title="Show Dialog - Scale Animation"
+            onPress={this.showScaleAnimationDialog}
+          />
+
+          <Button
+            title="Show Dialog - Slide Animation"
+            onPress={this.showSlideAnimationDialog}
+          />
+        </View>
+
+        <PopupDialog
+          ref={(popupDialog) => {
+            this.scaleAnimationDialog = popupDialog;
+          }}
+          dialogAnimation={scaleAnimation}
+          dialogTitle={<DialogTitle title="상품" />}
+          actions={[
+            <DialogButton
+              text="추가"
+              onPress={() => {
+                this.scaleAnimationDialog.dismiss();
+              }}
+              key="button-1"
+            />,
+          ]}
+        >
+          <View style={styles.dialogContentView}>
+            <Button
+              title="Show Dialog - Default Animation"
+              onPress={this.showFadeAnimationDialog}
+            />
+          </View>
+        </PopupDialog>
+
+        <PopupDialog
+          width={0.7}
+          dialogTitle={<DialogTitle title="상품" />}
+          ref={(popupDialog) => {
+            this.slideAnimationDialog = popupDialog;
+          }}
+          dialogAnimation={slideAnimation}
+        >
+          <View style={styles.dialogContentView}>
+            <Text>Slide Animation</Text>
+          </View>
+        </PopupDialog>
+
+        <PopupDialog
+          ref={(fadeAnimationDialog) => {
+            this.fadeAnimationDialog = fadeAnimationDialog;
+          }}
+          dialogTitle={<DialogTitle title="Popup Dialog - Default Animation" />}
+        >
+          <View style={styles.dialogContentView}>
+            <Text>Default Animation</Text>
+          </View>
+        </PopupDialog>
       </View>
     );
   }
-
 }
-
-var styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    margin: 10,
-  },
-  // Flex to fill, position absolute,
-  // Fixed left/top, and the width set to the window width
-  overlay: {
-    flex: 1,
-    position: 'absolute',
-    right: 0,
-    bottom: 0,
-    opacity: 0.5,
-    backgroundColor: 'black',
-    width: 300
-  }
-});
-
-
-export default Profit;

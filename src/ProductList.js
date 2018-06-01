@@ -1,5 +1,6 @@
 import React from 'react';
 import { Modal, View, Text, Button, WebView, ScrollView, Image, Dimensions, StyleSheet, TouchableHighlight } from 'react-native';
+import PopupDialog, { FadeAnimation, DialogTitle, DialogButton }  from 'react-native-popup-dialog';
 import {NavigationActions} from 'react-navigation';
 import url from 'url';
 import queryString from 'query-string';
@@ -23,7 +24,7 @@ class ProductList extends React.Component<{}> {
 
     var self = this;
     Logic.selectProductCandidateFromShop('muyoungko217', function(recents){
-      console.log(recents);
+      //console.log(recents);
       self.setState({
         data : recents
       });
@@ -42,10 +43,16 @@ class ProductList extends React.Component<{}> {
 
   onClickItem(index)
   {
-
+    this.popupDialog.show(() => {
+      console.log('callback - will be called immediately')
+    });
   }
 
+
+
   render() {
+    const fadeAnimation = new FadeAnimation({ animationDuration: 150 });
+
     return (
       <View style={{ backgroundColor: '#ffffff', flex:1}}>
 
@@ -92,7 +99,27 @@ class ProductList extends React.Component<{}> {
         </ScrollView>
 
 
-
+        <PopupDialog
+          width={0.7}
+          ref={(popupDialog) => {
+            this.popupDialog = popupDialog;
+          }}
+          dialogAnimation={fadeAnimation}
+          dialogTitle={<DialogTitle title="상품에 추가하였습니다" />}
+          actions={[
+            <DialogButton
+              text="확인"
+              onPress={() => {
+                this.popupDialog.dismiss();
+              }}
+              key="button-1"
+            />
+          ]}
+        >
+          <View style={styles.dialogContentView}>
+            <Text>가격</Text>
+          </View>
+        </PopupDialog>
 
       </View>
     );
@@ -117,6 +144,12 @@ const styles = StyleSheet.create({
     marginBottom : 1.5,
     marginRight : 1.5,
     height: Dimensions.get('window').width /3-3,
+  },
+
+  dialogContentView: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 

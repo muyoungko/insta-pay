@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, View, Text, Button, WebView, ScrollView, Image, Dimensions, StyleSheet, TouchableHighlight } from 'react-native';
+import { TextInput , Modal, View, Text, Button, WebView, ScrollView, Image, Dimensions, StyleSheet, TouchableHighlight } from 'react-native';
 import PopupDialog, { FadeAnimation, DialogTitle, DialogButton }  from 'react-native-popup-dialog';
 import {NavigationActions} from 'react-navigation';
 import url from 'url';
@@ -43,9 +43,27 @@ class ProductList extends React.Component<{}> {
 
   onClickItem(index)
   {
-    this.popupDialog.show(() => {
-      console.log('callback - will be called immediately')
-    });
+    //console.log(this.state.data[index].images.low_resolution.url);
+    //console.log(this.dialogimg);
+
+
+    //this.dialogimg.source = {uri:src};
+    // this.popupDialog.show(() => {
+    //   console.log('callback - will be called immediately')
+    //   // var src = this.state.data[index].images.low_resolution.url;
+    //   // this.setState({
+    //   //   imageURL : src
+    //   // });
+    // });
+
+    var media = this.state.data[index];
+    if(!media.product)
+    {
+
+      Logic.transferMediaToProductInShop('muyoungko217', media, function(){
+        alert('상품이 추가되었습니다.');
+      })
+    }
   }
 
 
@@ -71,7 +89,7 @@ class ProductList extends React.Component<{}> {
 
 
                 {(() => {
-                  if(item.price)
+                  if(item.product.price)
                   {
                     return (
                       <Text style={{position: 'absolute', margin:3, backgroundColor: '#00000044', right:0, bottom:0, fontSize:Util.getFontSize(15), color:'#ffffff'}}>
@@ -87,12 +105,22 @@ class ProductList extends React.Component<{}> {
                     return (
                       <View style={{borderRadius: 0,
                         borderWidth: 2,
-                        borderColor: '#ff0000', width:Dimensions.get('window').width/3-3,
+                        borderColor: '#006600', width:Dimensions.get('window').width/3-3,
                         height:Dimensions.get('window').width/3-3,
                         position: 'absolute', margin:1.5}}/>
                     )
                   }
                 })()}
+
+                {(() => {
+                  if(item.product)
+                  {
+                    return (
+                        <Text style={{position: 'absolute', margin:3, backgroundColor: '#006600', left:0, top:0, fontSize:Util.getFontSize(12), color:'#ffffff'}}>상품</Text>
+                    )
+                  }
+                })()}
+
               </View>
             </TouchableHighlight>
           ))}
@@ -118,6 +146,14 @@ class ProductList extends React.Component<{}> {
         >
           <View style={styles.dialogContentView}>
             <Text>가격</Text>
+
+
+            <TextInput
+              style={styles.input}
+              editable = {true}
+              maxLength = {30}
+            />
+
           </View>
         </PopupDialog>
 
@@ -144,6 +180,13 @@ const styles = StyleSheet.create({
     marginBottom : 1.5,
     marginRight : 1.5,
     height: Dimensions.get('window').width /3-3,
+  },
+  input: {
+    margin: 15,
+    height: 30,
+    width: 100,
+    borderColor: '#888888',
+    borderWidth: 1
   },
 
   dialogContentView: {

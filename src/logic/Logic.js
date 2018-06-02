@@ -12,7 +12,12 @@ import InstaApi from '../instaapi/InstaApi.js';
 
   product entity
     - id : 인스타 미디어 아이디
-    -
+    - price
+    - image
+    - seller
+    - seller_image
+    - reviews
+
 
   order entity
     -
@@ -51,7 +56,8 @@ export default class Logic{
   static updateShopHelloInfo(){}
 
 
-  static upsertProductToShop(){}
+  //static transferMediaToProductInShop(){}
+  //static updateProduct(){}
   static removeProductFromShop(){}
   //static selectProductFromShop(){}
   //static selectProductCandidateFromShop(){}
@@ -71,6 +77,49 @@ export default class Logic{
   static upsertOrderFromShop(){}
   static selectOrderListFromUser(seller){}
 
+  static transferMediaToProductInShop(shopid, media, func){
+    const db = firebase.database();
+    var self = this;
+
+    db.ref('shops/'+shopid).once('value').then(function(snapshot){
+      var shop = snapshot.val();
+      var captionText = '';
+      if(media.caption)
+        captionText = media.caption.text;
+
+      var productLite = {
+        id : media.id,
+        shop : shop.id,
+        image : media.images.low_resolution.url ,
+        image_high : media.images.standard_resolution.url ,
+        caption : captionText
+      }
+
+      db.ref('shops/'+shopid+'/products').once('value').then(function(fProductList){
+        var productKeyArray = fProductList.val();
+        if(productKeyArray == null)
+          productKeyArray = [];
+        productKeyArray = self.removeFromArray(productKeyArray , media.id);
+        productKeyArray[productKeyArray.length] = media.id;
+        db.ref('shops/'+shopid+'/products').set(productKeyArray);
+      });
+
+      var product = {
+          id : media.id,
+          shop : shop.id,
+          image : media.images.low_resolution.url ,
+          image_high : media.images.standard_resolution.url ,
+          caption : captionText
+        }
+      if(media.videos)
+        product.video = media.videos.standard_resolution.url;
+
+      db.ref('products/'+media.id).update(product);
+
+      func();
+    });
+
+  }
 
   static upsertAndGetUser(func){
       InstaApi.self(function(json, error){
@@ -114,28 +163,46 @@ export default class Logic{
     });
   }
 
-  static selectProductFromShop(shopName, func){
+  static selectProductFromShop(shopId, func){
     const db = firebase.database();
-    db.ref('shops/'+shopName).once('value').then(function(snapshot) {
-      func(snapshot.val());
+    db.ref('shops/'+shopId +'/products').once('value').then(function(productIdArraySnapshot){
+      var productIdArray = productIdArraySnapshot.val();
+      var products = [];
+      for(var i=0;i<productIdArray.length;i++)
+      {
+        db.ref('products/'+productIdArray[i]).once('value').then(function(snapshot){
+          products.push(snapshot.val());
+          if(productIdArray.length == products.length)
+            func(products);
+        });
+      }
     });
   }
 
   static selectProductCandidateFromShop(shop, funca){
     const db = firebase.database();
-    console.log('called ' + shop);
-    db.ref('shops/'+shop+'/products').once('value').then(function(snapshot) {
-      InstaApi.recent(function(recents, e){
-        var products = snapshot.val();
+    var self = this;
 
-        // var recents = recents.data;
-        // for(var i=0;i<recents.length;i++)
-        // {
-        //
-        // }
+    InstaApi.recent(function(recents, e){
+      var medias = recents.data;
+      var c = 0;
+      for(var i=0;i<medias.length;i++)
+      {
+        //console.log(medias[i].id);
+        db.ref('products/'+medias[i].id).once('value').then(function(snapshot){
 
-        funca(recents.data, e);
-      });
+          if(snapshot != null)
+          {
+            medias[c].product = snapshot.val();
+          }
+          c = c+1;
+          if(medias.length == c)
+          {
+            //console.log(medias);
+            funca(medias);
+          }
+        });
+      }
     });
   }
 
@@ -155,5 +222,19 @@ export default class Logic{
     this.client_id = client_id;
     this.secret = secret;
     this.code = code;
+  }
+
+
+  static removeFromArray(arr, item){
+    var r = [];
+    var jin = 0;
+    for(var i=0;i<arr.length;i++)
+    {
+      if(arr[i]==item)
+        jin = jin+1;
+      else
+        r[i - jin] = arr[i];
+    }
+    return r;
   }
 };

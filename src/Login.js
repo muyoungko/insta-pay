@@ -1,3 +1,11 @@
+import firebase from 'firebase/app'
+import 'firebase/auth'
+import 'firebase/database'
+import 'firebase/firestore'
+import 'firebase/storage'
+import 'firebase/messaging'
+
+
 import React from 'react';
 import { View, Text, Button, WebView} from 'react-native';
 import {NavigationActions} from 'react-navigation';
@@ -17,7 +25,27 @@ class LoginScreen extends React.Component {
 
   componentDidMount()
   {
+    var shopId = 'muyoungko217';
+    // const db = firebase.database();
+    // db.ref('shops/'+shopId +'/products').once('value').then(function(productIdArraySnapshot){
+    //   var productIdArray = productIdArraySnapshot.val();
+    //   var products = [];
+    //   for(var i=0;i<productIdArray.length;i++)
+    //   {
+    //     db.ref('products/'+productIdArray[i]).once('value').then(function(snapshot){
+    //       products.push(snapshot.val());
+    //       if(productIdArray.length == products.length)
+    //         console.log(products);
+    //     });
+    //   }
+    // });
 
+    // const db = firebase.database();
+    // var productsref = db.ref('products');
+    // var r = [];
+    // productsref.orderByChild('id').equalTo(true/false).on("child_added", function(Data){
+    //   console.log(Data.val(), Data.key);
+    // });
   }
 
   static navigationOptions = {
@@ -39,21 +67,11 @@ class LoginScreen extends React.Component {
     );
   }
 
-  /**
-    {
-    canGoBack: bool,
-    canGoForward: bool,
-    loading: bool,
-    target: number,
-    title: string,
-    url: string,
-  }*/
   _onNavigationStateChange(webViewState){
     var urlObject = url.parse(webViewState.url);
     //console.log(webViewState.url);
     //let outUrlString = urlObject.protocol + '//' + urlObject.host + '/more/jump?jump_path=' + encodeURIComponent(urlObject.pathname);
 
-    //alert(urlObject.pathname);
     var params = queryString.parse(urlObject.query);
 
     var index = webViewState.url.indexOf('#');
@@ -66,19 +84,6 @@ class LoginScreen extends React.Component {
       //console.log(Global.CODE);
       if(!this.state.authorized)
       {
-
-        // var ig = require('instagram-node').instagram();
-        // ig.use({ access_token: GLOBAL.CODE });
-        // ig.use({ client_id: 'c99f61f0de284159a05576d4b34005bc',
-        //  client_secret: 'a50de48865f8436ba1298d420a1f7213' });
-
-        // const Instagram = require('node-instagram').default;
-        // // Create a new instance.
-        // const instagram = new Instagram({
-        //   clientId: 'c99f61f0de284159a05576d4b34005bc',
-        //   clientSecret: 'a50de48865f8436ba1298d420a1f7213',
-        //   accessToken: GLOBAL.CODE,
-        // });
         var self = this;
         InstaApi.init('c99f61f0de284159a05576d4b34005bc', 'a50de48865f8436ba1298d420a1f7213', token);
         Logic.upsertAndGetUser(function(user,err){

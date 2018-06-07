@@ -25,7 +25,7 @@ class LoginScreen extends React.Component {
 
   componentDidMount()
   {
-    var shopId = 'muyoungko217';
+    //var shopId = 'muyoungko217';
     // const db = firebase.database();
     // db.ref('shops/'+shopId +'/products').once('value').then(function(productIdArraySnapshot){
     //   var productIdArray = productIdArraySnapshot.val();
@@ -79,7 +79,7 @@ class LoginScreen extends React.Component {
     {
       var token = webViewState.url.substring(index+'#access_token='.length,webViewState.url.length)
 
-      Global.CODE = token;
+
       Global.navigation = this.props.navigation;
       //console.log(Global.CODE);
       if(!this.state.authorized)
@@ -87,9 +87,11 @@ class LoginScreen extends React.Component {
         var self = this;
         InstaApi.init('c99f61f0de284159a05576d4b34005bc', 'a50de48865f8436ba1298d420a1f7213', token);
         Logic.upsertAndGetUser(function(user,err){
-            Logic.upsertAndGetShop(user, function(shop,err){
-              self.props.navigation.replace('TabBar');
-            });
+          //console.log(user);
+          Global.shopId = user.username;
+          Logic.upsertAndGetShop(user, function(shop,err){
+            self.props.navigation.replace('TabBar');
+          });
         });
 
 

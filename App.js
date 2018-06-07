@@ -31,7 +31,7 @@ import OrderScreen from './src/Order.js';
 import ProfitScreen from './src/Profit.js';
 import SettingScreen from './src/Setting.js';
 import TabBarScreen from './src/TabBar.js';
-
+import ProductDetail from './src/ProductDetail.js'
 
 
 function __translate(term) {
@@ -61,85 +61,13 @@ function __translate(term) {
   }
 }
 
-class HomeScreen extends React.Component {
-  constructor()
-  {
-    super();
-    this.state = {test : 'asdfsdfs'};
-    console.log('test');
-  }
-
-  static navigationOptions = {
-    tabBarLabel: 'Settings'
-  };
-
-  componentDidMount()
-  {
-    this.setState({
-          test: 'false'
-        }, function(){
-
-        });
-  }
-
-  static navigationOptions = {
-    title: 'Welcome',
-  };
-
-  render() {
-    const { navigate } = this.props.navigation;
-    return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Home Screen</Text>
-        <Text>{this.state.test}</Text>
-        <Button
-          title="Go to Details"
-          onPress={() => this.props.navigation.navigate('Details')}
-        />
-        <ActivityIndicator size="large" color="#0000ff" />
-      </View>
-    );
-  }
-}
-
-
-class DetailsScreen extends React.Component {
-
-  static navigationOptions = {
-    title: '상품상세',
-  };
-  static navigationOptions = {
-    tabBarLabel: 'ddd'
-  };
-
-  render() {
-    const { navigate } = this.props.navigation;
-    return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Details Screen</Text>
-        <Button
-          title="Go to Details... again"
-          onPress={() => this.props.navigation.push('Details')}
-        />
-        <Button
-          title="Go to Home"
-          onPress={() => this.props.navigation.navigate('Home')}
-        />
-        <Button
-          title="Go back"
-          onPress={() => this.props.navigation.goBack()}
-        />
-      </View>
-    );
-  }
-}
-
 
 const MainStackNavigator = createStackNavigator(
   {
     Login: LoginScreen,
     TabBar: TabBarScreen,
     Message: MessageScreen,
+    ProductDetail : ProductDetail
   },
   {
     initialRouteName: 'Login',

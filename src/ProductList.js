@@ -23,8 +23,8 @@ class ProductList extends React.Component<{}> {
   {
 
     var self = this;
-    Logic.selectProductCandidateFromShop('muyoungko217', function(recents){
-      //console.log(recents);
+    Logic.selectProductCandidateFromShop(Global.shopId, function(recents){
+      console.log(recents);
       self.setState({
         data : recents
       });
@@ -59,10 +59,13 @@ class ProductList extends React.Component<{}> {
     var media = this.state.data[index];
     if(!media.product)
     {
+      Logic.transferMediaToProductInShop(Global.shopId, media, function(){
+        alert('상품이 추가되었습니다. 상품상세 정보를 입력하시려면 상품 사진을 한번 더 눌러주세요.');
 
-      Logic.transferMediaToProductInShop('muyoungko217', media, function(){
-        alert('상품이 추가되었습니다.');
-      })
+      });
+    }else {
+      //this.popupDialog.show();
+      Global.navigation.push('ProductDetail');
     }
   }
 
@@ -133,7 +136,7 @@ class ProductList extends React.Component<{}> {
             this.popupDialog = popupDialog;
           }}
           dialogAnimation={fadeAnimation}
-          dialogTitle={<DialogTitle title="상품에 추가하였습니다" />}
+          dialogTitle={<DialogTitle title="상품정보" />}
           actions={[
             <DialogButton
               text="확인"

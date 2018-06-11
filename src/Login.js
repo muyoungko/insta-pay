@@ -94,13 +94,11 @@ class LoginScreen extends React.Component {
           });
         });
 
-
-
         this.setState({
-              authorized: true
-            }, function(){
+          authorized: true
+        }, function(){
 
-            });
+        });
       }
     }
     //console.log(webViewState.url);

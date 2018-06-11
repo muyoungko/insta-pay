@@ -24,7 +24,7 @@ class ProductList extends React.Component<{}> {
 
     var self = this;
     Logic.selectProductCandidateFromShop(Global.shopId, function(recents){
-      console.log(recents);
+      //console.log(recents);
       self.setState({
         data : recents
       });
@@ -64,8 +64,10 @@ class ProductList extends React.Component<{}> {
 
       });
     }else {
-      //this.popupDialog.show();
-      Global.navigation.push('ProductDetail');
+      //console.log(media.id);
+      var r = {productId : media.id};
+      Global.navigation.navigate('ProductDetail', r);
+
     }
   }
 

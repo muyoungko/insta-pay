@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextInput , Modal, View, Text, Button, WebView, ScrollView, Image, Dimensions, StyleSheet, TouchableHighlight } from 'react-native';
+import { TextInput , Modal, Alert, View, Text, Button, WebView, ScrollView, Image, Dimensions, StyleSheet, TouchableHighlight } from 'react-native';
 import PopupDialog, { FadeAnimation, DialogTitle, DialogButton }  from 'react-native-popup-dialog';
 import {NavigationActions} from 'react-navigation';
 import url from 'url';
@@ -59,9 +59,18 @@ class ProductList extends React.Component<{}> {
     var media = this.state.data[index];
     if(!media.product)
     {
+      var self = this;
       Logic.transferMediaToProductInShop(Global.shopId, media, function(){
-        alert('상품이 추가되었습니다. 상품상세 정보를 입력하시려면 상품 사진을 한번 더 눌러주세요.');
-
+        // Alert.alert('상품이 추가되었습니다. 상품상세 정보를 입력하시려면 상품 사진을 한번 더 눌러주세요.',
+        //
+        // );
+        Alert.alert(null,
+        '상품이 추가되었습니다. 상품상세 정보를 입력하시려면 상품 사진을 한번 더 눌러주세요.',
+        [
+          {text: '확인', onPress: () => {
+              self.componentDidMount();
+          }, style: 'cancel'}
+        ],)
       });
     }else {
       //console.log(media.id);
@@ -94,11 +103,11 @@ class ProductList extends React.Component<{}> {
 
 
                 {(() => {
-                  if(item.product.price)
+                  if(item.product && item.product.price)
                   {
                     return (
-                      <Text style={{position: 'absolute', margin:3, backgroundColor: '#00000044', right:0, bottom:0, fontSize:Util.getFontSize(15), color:'#ffffff'}}>
-                      {item.price}</Text>
+                      <Text style={{paddingLeft:5,paddingRight:5,position: 'absolute', margin:3, backgroundColor: '#00000044', right:0, bottom:0, fontSize:Util.getFontSize(15), color:'#ffffff'}}>
+                      {item.product.price}</Text>
                     )
                   }
                 })()}

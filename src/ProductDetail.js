@@ -27,11 +27,10 @@ class ProductDetail extends React.Component<{}> {
     //console.log(productId);
     var self = this;
     Logic.selectProduct(productId, function(product){
-      // console.log(product);
       self.setState({
+        price : product.price,
         product : product
       });
-      console.log(self.state);
     });
   }
 
@@ -46,24 +45,38 @@ class ProductDetail extends React.Component<{}> {
   }
   onClickSave()
   {
-    console.log(self.state);
-    // var n = parseInt(this.state.price);
-    // var pproduct = {
-    //   id:this.state.product.id,
-    //   price: n
-    // };
-    // Logic.updateProduct(pproduct, function(error){
-    //
-    // });
+    var n = parseInt(this.state.price);
+    var pproduct = {
+      id:this.state.product.id,
+      price: n
+    };
+    Logic.updateProduct(pproduct, function(error){
+      Alert.alert('저장되었습니다~ 쇼핑몰에서 확인해보세요');
+      Global.navigation.pop();
+    });
   }
   onClickDelete()
   {
+    var self = this;
     Alert.alert(
       '경고',
       '쇼핑몰에서 제외합니다. 그러면 그냥 인스타 사진이 됩니다.',
       [
-        {text: '취소', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-        {text: '삭제', onPress: () => console.log('OK Pressed')},
+        {text: '취소', onPress: () => {
+
+        }, style: 'cancel'},
+        {
+          text: '삭제', onPress: () => {
+            var pproduct = {
+              id:self.state.product.id,
+              removed: true
+            };
+            Logic.updateProduct(pproduct, function(error){
+              Alert.alert('상품이 삭제되었습니다~ 쇼핑몰에서 확인해보세요');
+              Global.navigation.pop();
+            });
+          }
+        },
       ],
       { cancelable: true }
     );
@@ -91,12 +104,13 @@ class ProductDetail extends React.Component<{}> {
         <View style={{height:50, flexDirection: 'row', alignItems: 'center'}}>
           <Text style={{left: 20, width : 100, fontSize:Util.getFontSize(18), color:'#222222'}}> 가격 </Text>
           <TextInput
+            placeholder="Enter Price"
             keyboardType = 'numeric'
             ref={(textInput) => {
               this.textInput = textInput;
             }}
-            // onChangeText={(text) => this.setState({price:text})}
-            value = {this.state.product.price}
+            onChangeText={(text) => this.setState({price:text})}
+            value = {this.state.product.price?String(this.state.product.price):''}
             style={{fontSize:Util.getFontSize(18), color:'#222222', paddingLeft:10, left: 5, width : 150, height : 40, borderWidth: 1,borderColor: '#eeeeee'}}/>
         </View>
         <View style={{backgroundColor: '#eeeeee', height:1}}></View>
@@ -108,7 +122,7 @@ class ProductDetail extends React.Component<{}> {
         <View style={{height:60, flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
           <View style={{marginLeft:30, marginRight:30, backgroundColor: '#00aeef', flex:1, borderRadius: 10 }}>
             <Button
-              onPress={this.onClickSave}
+              onPress={() => this.onClickSave()}
               title="저장"
               color="#ffffff"
               style={{flex:1}}
@@ -119,7 +133,7 @@ class ProductDetail extends React.Component<{}> {
         <View style={{height:60, flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
           <View style={{marginLeft:30, marginBottom:15, marginRight:30, backgroundColor: '#ff0000', flex:1, borderRadius: 10 }}>
             <Button
-              onPress={this.onClickDelete}
+              onPress={() => this.onClickDelete()}
               title="삭제"
               color="#ffffff"
               style={{flex:1}}

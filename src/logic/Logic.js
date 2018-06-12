@@ -89,14 +89,6 @@ export default class Logic{
       if(media.caption)
         captionText = media.caption.text;
 
-      var productLite = {
-        id : media.id,
-        shop : shop.id,
-        image : media.images.low_resolution.url ,
-        image_high : media.images.standard_resolution.url ,
-        caption : captionText
-      }
-
       db.ref('shops/'+shopid+'/products').once('value').then(function(fProductList){
         var productKeyArray = fProductList.val();
         if(productKeyArray == null)
@@ -111,7 +103,8 @@ export default class Logic{
           shop : shop.id,
           image : media.images.low_resolution.url ,
           image_high : media.images.standard_resolution.url ,
-          caption : captionText
+          caption : captionText,
+          removed : false,
         }
       if(media.videos)
         product.video = media.videos.standard_resolution.url;
@@ -208,8 +201,8 @@ export default class Logic{
       {
         //console.log(medias[i].id);
         db.ref('products/'+medias[i].id).once('value').then(function(snapshot){
-
-          if(snapshot != null)
+          var product = snapshot.val();
+          if(snapshot != null && product.removed != true)
           {
             medias[c].product = snapshot.val();
           }

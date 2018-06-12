@@ -48,6 +48,13 @@ export default class TapBar extends React.Component<*, State> {
     //, header: { visible:false } 헤더 숨기고 싶은데 에러남
   };
 
+  onNavigatorEvent = event => {
+      switch (event.id) {
+        case 'willAppear':
+          console.log(event.id);
+          break;
+      }
+   };
 
   state = {
     index: 0,

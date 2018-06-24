@@ -8,7 +8,6 @@ import {
   StyleSheet,
 } from 'react-native';
 import { TabViewAnimated, SceneMap } from 'react-native-tab-view';
-import { Ionicons } from '@expo/vector-icons';
 import Util from './util/Util.js';
 
 import type { Route, NavigationState } from 'react-native-tab-view/types';
@@ -26,7 +25,6 @@ import SettingScreen from './Setting.js';
 
 
 
-const AnimatedIcon = Animated.createAnimatedComponent(Ionicons);
 
 type State = NavigationState<
   Route<{
@@ -100,16 +98,7 @@ export default class TapBar extends React.Component<*, State> {
     });
     return (
       <View style={styles.iconContainer}>
-        <AnimatedIcon
-          name={route.icon}
-          size={26}
-          style={[styles.icon, { opacity: filledOpacity }]}
-        />
-        <AnimatedIcon
-          name={route.icon + '-outline'}
-          size={26}
-          style={[styles.icon, styles.outline, { opacity: outlineOpacity }]}
-        />
+
       </View>
     );
   };

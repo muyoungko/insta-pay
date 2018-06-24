@@ -17,5 +17,7 @@
       ],
       "projectRoots": ""
     }
-  }
+  },
+  "name": "instapay",
+  "displayName": "Talk In Shop"
 }

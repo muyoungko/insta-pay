@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/muyoungko/Documents/react-native/insta-pay/android/app/src/main/AndroidManifest.xml:1:1-26:12
-INJECTED from /Users/muyoungko/Documents/react-native/insta-pay/android/app/src/main/AndroidManifest.xml:1:1-26:12
-INJECTED from /Users/muyoungko/Documents/react-native/insta-pay/android/app/src/main/AndroidManifest.xml:1:1-26:12
-INJECTED from /Users/muyoungko/Documents/react-native/insta-pay/android/app/src/main/AndroidManifest.xml:1:1-26:12
+ADDED from /Users/muyoungko/Documents/react-native/insta-pay/android/app/src/main/AndroidManifest.xml:1:1-30:12
+INJECTED from /Users/muyoungko/Documents/react-native/insta-pay/android/app/src/main/AndroidManifest.xml:1:1-30:12
+INJECTED from /Users/muyoungko/Documents/react-native/insta-pay/android/app/src/main/AndroidManifest.xml:1:1-30:12
+INJECTED from /Users/muyoungko/Documents/react-native/insta-pay/android/app/src/main/AndroidManifest.xml:1:1-30:12
 MERGED from [com.facebook.react:react-native:0.55.4] /Users/muyoungko/.gradle/caches/transforms-1/files-1.1/react-native-0.55.4.aar/2821456b7cb0648f5fc56615ecb1ea78/AndroidManifest.xml:2:1-15:12
 MERGED from [com.android.support:appcompat-v7:23.0.1] /Users/muyoungko/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/51c983a7e6b0d784fd8bd33fa9a0e86a/AndroidManifest.xml:17:1-24:12
 MERGED from [com.android.support:support-v4:23.0.1] /Users/muyoungko/.gradle/caches/transforms-1/files-1.1/support-v4-23.0.1.aar/478ee94e7946ce8df684e5599a3b322d/AndroidManifest.xml:17:1-24:12
@@ -16,20 +16,20 @@ MERGED from [com.facebook.fresco:drawee:1.3.0] /Users/muyoungko/.gradle/caches/t
 MERGED from [com.facebook.fresco:imagepipeline:1.3.0] /Users/muyoungko/.gradle/caches/transforms-1/files-1.1/imagepipeline-1.3.0.aar/90451588d3597d1d34e01ab160fa5d00/AndroidManifest.xml:2:1-9:12
 MERGED from [com.facebook.fresco:imagepipeline-base:1.3.0] /Users/muyoungko/.gradle/caches/transforms-1/files-1.1/imagepipeline-base-1.3.0.aar/ecd3f12409dd29ae0781822e730cbba7/AndroidManifest.xml:2:1-9:12
 MERGED from [com.facebook.fresco:fbcore:1.3.0] /Users/muyoungko/.gradle/caches/transforms-1/files-1.1/fbcore-1.3.0.aar/a3debb1a6a569496c47d5770cf025f12/AndroidManifest.xml:2:1-9:12
-INJECTED from /Users/muyoungko/Documents/react-native/insta-pay/android/app/src/main/AndroidManifest.xml:1:1-26:12
-INJECTED from /Users/muyoungko/Documents/react-native/insta-pay/android/app/src/main/AndroidManifest.xml:1:1-26:12
-INJECTED from /Users/muyoungko/Documents/react-native/insta-pay/android/app/src/main/AndroidManifest.xml:1:1-26:12
+INJECTED from /Users/muyoungko/Documents/react-native/insta-pay/android/app/src/main/AndroidManifest.xml:1:1-30:12
+INJECTED from /Users/muyoungko/Documents/react-native/insta-pay/android/app/src/main/AndroidManifest.xml:1:1-30:12
+INJECTED from /Users/muyoungko/Documents/react-native/insta-pay/android/app/src/main/AndroidManifest.xml:1:1-30:12
 	package
 		ADDED from /Users/muyoungko/Documents/react-native/insta-pay/android/app/src/main/AndroidManifest.xml:2:5-27
 		INJECTED from /Users/muyoungko/Documents/react-native/insta-pay/android/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/muyoungko/Documents/react-native/insta-pay/android/app/src/main/AndroidManifest.xml
 	android:versionName
 		INJECTED from /Users/muyoungko/Documents/react-native/insta-pay/android/app/src/main/AndroidManifest.xml
-		ADDED from /Users/muyoungko/Documents/react-native/insta-pay/android/app/src/main/AndroidManifest.xml:1:1-26:12
+		ADDED from /Users/muyoungko/Documents/react-native/insta-pay/android/app/src/main/AndroidManifest.xml:1:1-30:12
 		INJECTED from /Users/muyoungko/Documents/react-native/insta-pay/android/app/src/main/AndroidManifest.xml
 	android:versionCode
 		INJECTED from /Users/muyoungko/Documents/react-native/insta-pay/android/app/src/main/AndroidManifest.xml
-		ADDED from /Users/muyoungko/Documents/react-native/insta-pay/android/app/src/main/AndroidManifest.xml:1:1-26:12
+		ADDED from /Users/muyoungko/Documents/react-native/insta-pay/android/app/src/main/AndroidManifest.xml:1:1-30:12
 		INJECTED from /Users/muyoungko/Documents/react-native/insta-pay/android/app/src/main/AndroidManifest.xml
 	xmlns:android
 		ADDED from /Users/muyoungko/Documents/react-native/insta-pay/android/app/src/main/AndroidManifest.xml:1:11-69
@@ -89,6 +89,18 @@ activity#com.facebook.react.devsupport.DevSettingsActivity
 ADDED from /Users/muyoungko/Documents/react-native/insta-pay/android/app/src/main/AndroidManifest.xml:23:7-84
 	android:name
 		ADDED from /Users/muyoungko/Documents/react-native/insta-pay/android/app/src/main/AndroidManifest.xml:23:17-81
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from /Users/muyoungko/Documents/react-native/insta-pay/android/app/src/main/AndroidManifest.xml:26:5-78
+	android:name
+		ADDED from /Users/muyoungko/Documents/react-native/insta-pay/android/app/src/main/AndroidManifest.xml:26:22-76
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from /Users/muyoungko/Documents/react-native/insta-pay/android/app/src/main/AndroidManifest.xml:27:5-75
+	android:name
+		ADDED from /Users/muyoungko/Documents/react-native/insta-pay/android/app/src/main/AndroidManifest.xml:27:22-73
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from /Users/muyoungko/Documents/react-native/insta-pay/android/app/src/main/AndroidManifest.xml:29:5-80
+	android:name
+		ADDED from /Users/muyoungko/Documents/react-native/insta-pay/android/app/src/main/AndroidManifest.xml:29:22-78
 uses-sdk
 INJECTED from /Users/muyoungko/Documents/react-native/insta-pay/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/muyoungko/Documents/react-native/insta-pay/android/app/src/main/AndroidManifest.xml
@@ -125,9 +137,7 @@ INJECTED from /Users/muyoungko/Documents/react-native/insta-pay/android/app/src/
 		INJECTED from /Users/muyoungko/Documents/react-native/insta-pay/android/app/src/main/AndroidManifest.xml
 		ADDED from /Users/muyoungko/Documents/react-native/insta-pay/android/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/muyoungko/Documents/react-native/insta-pay/android/app/src/main/AndroidManifest.xml
-uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-IMPLIED from /Users/muyoungko/Documents/react-native/insta-pay/android/app/src/main/AndroidManifest.xml:1:1-26:12 reason: org.webkit.android_jsc has a targetSdkVersion < 4
 uses-permission#android.permission.READ_PHONE_STATE
-IMPLIED from /Users/muyoungko/Documents/react-native/insta-pay/android/app/src/main/AndroidManifest.xml:1:1-26:12 reason: org.webkit.android_jsc has a targetSdkVersion < 4
+IMPLIED from /Users/muyoungko/Documents/react-native/insta-pay/android/app/src/main/AndroidManifest.xml:1:1-30:12 reason: org.webkit.android_jsc has a targetSdkVersion < 4
 uses-permission#android.permission.READ_EXTERNAL_STORAGE
-IMPLIED from /Users/muyoungko/Documents/react-native/insta-pay/android/app/src/main/AndroidManifest.xml:1:1-26:12 reason: org.webkit.android_jsc requested WRITE_EXTERNAL_STORAGE
+IMPLIED from /Users/muyoungko/Documents/react-native/insta-pay/android/app/src/main/AndroidManifest.xml:1:1-30:12 reason: org.webkit.android_jsc requested WRITE_EXTERNAL_STORAGE

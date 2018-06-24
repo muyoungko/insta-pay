@@ -21,6 +21,7 @@ import OrderScreen from './Order.js';
 import ProfitScreen from './Profit.js';
 import SettingScreen from './Setting.js';
 
+import { Icon } from 'react-native-elements'
 
 
 
@@ -98,7 +99,7 @@ export default class TapBar extends React.Component<*, State> {
     });
     return (
       <View style={styles.iconContainer}>
-
+        <Icon name='heartbeat' />
       </View>
     );
   };

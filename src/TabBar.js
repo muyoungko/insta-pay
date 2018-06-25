@@ -58,11 +58,11 @@ export default class TapBar extends React.Component<*, State> {
   state = {
     index: 0,
     routes: [
-      { key: 'myShop', title: '쇼핑몰', icon: 'ios-people' },
-      { key: 'productList', title: '상품', icon: 'ios-albums' },
-      { key: 'order', title: '주문', icon: 'ios-paper' },
-      { key: 'profit', title: '성과', icon: 'ios-chatboxes' },
-      { key: 'setting', title: 'MY', icon: 'ios-chatboxes' },
+      { key: 'myShop', title: '쇼핑몰', icon: 'message' },
+      { key: 'productList', title: '상품', icon: 'add-box' },
+      { key: 'order', title: '주문', icon: 'receipt' },
+      { key: 'profit', title: '매출', icon: 'show-chart' },
+      { key: 'setting', title: 'MY', icon: 'settings' },
     ],
   };
 
@@ -73,8 +73,9 @@ export default class TapBar extends React.Component<*, State> {
 
   _renderLabel = ({ position, navigationState }) => ({ route, index }) => {
     const inputRange = navigationState.routes.map((x, i) => i);
+
     const outputRange = inputRange.map(
-      inputIndex => (inputIndex === index ? '#2196f3' : '#939393')
+      inputIndex => (inputIndex === index ? '#ff5000' : '#939393')
     );
     const color = position.interpolate({
       inputRange,
@@ -97,9 +98,16 @@ export default class TapBar extends React.Component<*, State> {
       inputRange,
       outputRange: inputRange.map(i => (i === index ? 0 : 1)),
     });
+
+    var color = '#939393';
+    if(navigationState.index == index)
+      color = '#ff5000';
+
     return (
       <View style={styles.iconContainer}>
-        <Icon name='heartbeat' />
+      <Icon
+        name={route.icon}
+        color={color} />
       </View>
     );
   };

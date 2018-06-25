@@ -20,4 +20,6 @@ yarn-error.log*
 build/
 .class
 .gradle/
-
+*.iml
+.idea
+/.idea/workspace.xml

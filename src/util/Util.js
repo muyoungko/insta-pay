@@ -8,6 +8,6 @@ export default class Util{;
 
   static getStatusBarHeight()
   {
-    return Platform.OS === 'ios' ? 20 : 25;
+    return Platform.OS === 'ios' ? 20 : 0;
   }
 };

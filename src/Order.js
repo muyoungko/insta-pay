@@ -59,13 +59,15 @@ class Order extends React.Component {
 
   render() {
     return (
-      <FlatList
-        data={CONTACTS}
-        keyExtractor={(item, i) => String(i)}
-        renderItem={this._renderItem}
-        ItemSeparatorComponent={this._ItemSeparator}
-        style={{marginTop:Util.getStatusBarHeight()}}
-      />
+      <View style={{ backgroundColor: '#ffffff', flex:1}}>
+        <FlatList
+          data={CONTACTS}
+          keyExtractor={(item, i) => String(i)}
+          renderItem={this._renderItem}
+          ItemSeparatorComponent={this._ItemSeparator}
+          style={{marginTop:Util.getStatusBarHeight()}}
+        />
+      </View>
     );
   }
 

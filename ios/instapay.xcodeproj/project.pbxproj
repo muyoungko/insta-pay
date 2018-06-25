@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -41,6 +42,7 @@
 		59D7DD61D15A4F02B8FB069B /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35A91307E6564FBAB6D3BCDA /* Octicons.ttf */; };
 		5A3E74E1A3A64C698AF2AD8A /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 434C9AEE8211452A81D2ADD5 /* Ionicons.ttf */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
+		6D42D6DB20E10DB300DEBFB7 /* logo_big.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D42D6B420E10DB300DEBFB7 /* logo_big.png */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		91F60EE861C64828B28274D3 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AFA24467FBB844ABADF1999B /* SimpleLineIcons.ttf */; };
 		931050A3A6C14B99B7C43F2D /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 81C89B2CC21C4AA79EF50C4E /* FontAwesome.ttf */; };
@@ -363,6 +365,7 @@
 		434C9AEE8211452A81D2ADD5 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		628DB5632BEA40C3960585AC /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
+		6D42D6B420E10DB300DEBFB7 /* logo_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_big.png; sourceTree = "<group>"; };
 		7671F4ED71454985B9035B47 /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		81C89B2CC21C4AA79EF50C4E /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
@@ -599,6 +602,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		6D42D6B320E10DB200DEBFB7 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				6D42D6B420E10DB300DEBFB7 /* logo_big.png */,
+			);
+			name = images;
+			path = instapay/images;
+			sourceTree = "<group>";
+		};
 		78C398B11ACF4ADC00677621 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -640,6 +652,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				6D42D6B320E10DB200DEBFB7 /* images */,
 				13B07FAE1A68108700A75B9A /* instapay */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* instapayTests */,
@@ -1141,6 +1154,7 @@
 				59D7DD61D15A4F02B8FB069B /* Octicons.ttf in Resources */,
 				91F60EE861C64828B28274D3 /* SimpleLineIcons.ttf in Resources */,
 				05915E07219B45F19FB02DC4 /* Zocial.ttf in Resources */,
+				6D42D6DB20E10DB300DEBFB7 /* logo_big.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -53,7 +53,17 @@ export default class TapBar extends React.Component<*, State> {
           console.log(event.id);
           break;
       }
-   };
+  };
+
+  componentDidMount()
+  {
+
+  }
+
+  componentWillUnmount()
+  {
+    
+  }
 
   state = {
     index: 0,

@@ -17,6 +17,18 @@ class ProductList extends React.Component<{}> {
     this.state = {
       data : [],
     };
+
+     console.log(Global.navigation);
+     //this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent);
+  }
+
+  onNavigatorEvent(event)
+  {
+    switch (event.id) {
+      case 'willAppear':
+        console.log('willAppear');
+        break;
+    }
   }
 
   componentDidMount()
@@ -64,11 +76,12 @@ class ProductList extends React.Component<{}> {
         // Alert.alert('상품이 추가되었습니다. 상품상세 정보를 입력하시려면 상품 사진을 한번 더 눌러주세요.',
         //
         // );
+        self.componentDidMount();
         Alert.alert(null,
         '상품이 추가되었습니다. 상품상세 정보를 입력하시려면 상품 사진을 한번 더 눌러주세요.',
         [
           {text: '확인', onPress: () => {
-              self.componentDidMount();
+
           }, style: 'cancel'}
         ],)
       });
@@ -106,7 +119,10 @@ class ProductList extends React.Component<{}> {
                   if(item.product && item.product.price)
                   {
                     return (
-                      <Text style={{paddingLeft:5,paddingRight:5,position: 'absolute', margin:3, backgroundColor: '#00000044', right:0, bottom:0, fontSize:Util.getFontSize(15), color:'#ffffff'}}>
+                      <Text style={{paddingLeft:5,paddingRight:5,
+                        position: 'absolute', margin:3,
+                        backgroundColor: '#000000', right:0, bottom:0,
+                        fontSize:Util.getFontSize(15), color:'#ffffff'}}>
                       {item.product.price}</Text>
                     )
                   }
@@ -119,7 +135,7 @@ class ProductList extends React.Component<{}> {
                     return (
                       <View style={{borderRadius: 0,
                         borderWidth: 2,
-                        borderColor: '#006600', width:Dimensions.get('window').width/3-3,
+                        borderColor: '#ff5000', width:Dimensions.get('window').width/3-3,
                         height:Dimensions.get('window').width/3-3,
                         position: 'absolute', margin:1.5}}/>
                     )
@@ -130,7 +146,9 @@ class ProductList extends React.Component<{}> {
                   if(item.product)
                   {
                     return (
-                        <Text style={{position: 'absolute', margin:3, backgroundColor: '#006600', left:0, top:0, fontSize:Util.getFontSize(12), color:'#ffffff'}}>상품</Text>
+                        <Text style={{position: 'absolute', margin:3,
+                          backgroundColor: '#ff5000', left:0, top:0,
+                          fontSize:Util.getFontSize(12), color:'#ffffff'}}>상품</Text>
                     )
                   }
                 })()}

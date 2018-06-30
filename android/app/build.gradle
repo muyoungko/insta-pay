@@ -3,6 +3,9 @@ apply plugin: "com.android.application"
 import com.android.build.OutputFile
 
 /**
+ * way to build
+ * react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
+ *
  * The react.gradle file registers a task for each build variant (e.g. bundleDebugJsAndAssets
  * and bundleReleaseJsAndAssets).
  * These basically call `react-native bundle` with the correct arguments during the Android build
@@ -102,7 +105,7 @@ android {
     buildToolsVersion '27.0.3'
 
     defaultConfig {
-        applicationId "com.instapay"
+        applicationId "kr.co.july.instapay"
         minSdkVersion 16
         targetSdkVersion 22
         versionCode 1
@@ -111,6 +114,16 @@ android {
             abiFilters "armeabi-v7a", "x86"
         }
     }
+
+    signingConfigs {
+        release {
+            storeFile file('../../../muyoungko.keystore')
+            storePassword "83174584"
+            keyAlias "muyoungko"
+            keyPassword "83174584"
+        }
+    }
+
     splits {
         abi {
             reset()
@@ -123,6 +136,7 @@ android {
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
         }
     }
     // applicationVariants are e.g. debug, release

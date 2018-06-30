@@ -33,7 +33,7 @@ class ProductList extends React.Component<{}> {
 
   componentDidMount()
   {
-
+    Global.ProductListScreen = this;
     var self = this;
     Logic.selectProductCandidateFromShop(Global.shopId, function(recents){
       //console.log(recents);

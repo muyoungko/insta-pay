@@ -21,6 +21,8 @@ import 'firebase/storage'
 import 'firebase/messaging'
 
 
+const Global = require('./src/Global.js');
+
 
 import LoginScreen from './src/Login.js';
 import MessageScreen from './src/Message.js';
@@ -79,13 +81,6 @@ const MainStackNavigator = createStackNavigator(
 );
 
 
-const MyNestedTabNav = createBottomTabNavigator({
-  Message: { screen: MyShopScreen },
-  Product: { screen: ProductListScreen },
-  Order: { screen: OrderScreen },
-  Profit: { screen: ProfitScreen },
-  Setting: { screen: SettingScreen}
-});
 
 export default class App extends React.Component {
   constructor(){
@@ -104,13 +99,6 @@ export default class App extends React.Component {
   }
   componentDidMount()
   {
-    const db = firebase.database();
-    const dbRef = db.ref().child('seller').child('muyoungko217').child('userName');
-
-    db.ref('/seller/muyoungko217/userName').once('value').then(function(snapshot) {
-      //var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
-      //alert(snapshot.val());
-    });
   }
 
 
@@ -124,7 +112,33 @@ export default class App extends React.Component {
               Platform.OS === 'ios' ? 'dark-content' : 'light-content'
             }
           />
-        <MainStackNavigator/>
+        <MainStackNavigator
+          ref={(nav) => {
+            this.nav = nav;
+          }}
+          onNavigationStateChange={(prevState, currentState) => {
+            // const currentScreen = this.getCurrentRouteName(currentState);
+            // const prevScreen = this.getCurrentRouteName(prevState);
+
+            // { key: 'StackRouterRoot',
+            //   isTransitioning: false,
+            //   index: 1,
+            //   routes:
+            //    [ { params: undefined,
+            //        routeName: 'TabBar',
+            //        key: 'id-1529933756451-1' },
+            //      { params: { productId: '1524720643072290931_4787392170' },
+            //        routteName: 'ProductDetail',
+            //        key: 'id-1529933756451-2' } ] }
+
+            //alert(prevState.index + ' / ' + currentState.index);
+            if(prevState.index == 1 && currentState.index == 0)
+            {
+                Global.ProductListScreen.componentDidMount();
+            }
+          }}
+
+        />
       </View>
     );
   }
@@ -137,37 +151,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
      flexDirection: 'column',
-  },
-  statusbar: {
-    height: Platform.OS === 'ios' ? 20 : 25,
-  },
-  appbar: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    height: Platform.OS === 'ios' ? 44 : 56,
-    borderBottomColor: 'rgba(0, 0, 0, 0.1)',
-  },
-  title: {
-    flex: 1,
-    margin: 16,
-    textAlign: Platform.OS === 'ios' ? 'center' : 'left',
-    fontSize: 18,
-    color: '#fff',
-  },
-  button: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    width: 56,
-    padding: Platform.OS === 'ios' ? 12 : 16,
-  },
-  touchable: {
-    padding: 16,
-    backgroundColor: '#fff',
-    borderBottomWidth: 1,
-    borderBottomColor: 'rgba(0, 0, 0, .06)',
-  },
-  item: {
-    fontSize: 16,
-    color: '#333',
   },
 });

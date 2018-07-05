@@ -1,23 +1,4 @@
 {
-  "expo": {
-    "name": "Talk In Shop",
-    "description": "인스타 팔로워를 쇼핑함 http://www.insta-pay.co.kr",
-    "slug": "talkinshop",
-    "sdkVersion": "27.0.0",
-    "version": "1.0.0",
-    "primaryColor": "#2196f3",
-    "icon": "assets/icon.png",
-    "loading": {
-      "icon": "assets/icon.png",
-      "hideExponentText": false
-    },
-    "packagerOpts": {
-      "assetExts": [
-        "ttf"
-      ],
-      "projectRoots": ""
-    }
-  },
   "name": "instapay",
   "displayName": "Talk In Shop"
 }

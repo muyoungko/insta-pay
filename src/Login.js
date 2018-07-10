@@ -48,10 +48,6 @@ class LoginScreen extends React.Component {
     // });
   }
 
-  static navigationOptions = {
-    title: '인스타 연동을 해주세요~',
-  };
-
   render() {
 
     return (
@@ -78,7 +74,6 @@ class LoginScreen extends React.Component {
     if(urlObject.pathname == '/talkin' && index >= 0)
     {
       var token = webViewState.url.substring(index+'#access_token='.length,webViewState.url.length)
-
 
       Global.navigation = this.props.navigation;
       //console.log(Global.CODE);

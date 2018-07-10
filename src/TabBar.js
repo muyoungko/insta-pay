@@ -47,13 +47,13 @@ export default class TapBar extends React.Component<*, State> {
     //, header: { visible:false } 헤더 숨기고 싶은데 에러남
   };
 
-  onNavigatorEvent = event => {
-      switch (event.id) {
-        case 'willAppear':
-          console.log(event.id);
-          break;
-      }
-  };
+  constructor()
+  {
+    super();
+    //this.props.navigator.setOnNavigatorEvent(this._onNavigatorEvent.bind(this));
+  }
+
+
 
   componentDidMount()
   {
@@ -62,7 +62,7 @@ export default class TapBar extends React.Component<*, State> {
 
   componentWillUnmount()
   {
-    
+
   }
 
   state = {
@@ -76,10 +76,12 @@ export default class TapBar extends React.Component<*, State> {
     ],
   };
 
-  _handleIndexChange = index =>
+  _handleIndexChange(index)
+  {
     this.setState({
       index,
     });
+  }
 
   _renderLabel = ({ position, navigationState }) => ({ route, index }) => {
     const inputRange = navigationState.routes.map((x, i) => i);
@@ -122,6 +124,7 @@ export default class TapBar extends React.Component<*, State> {
     );
   };
 
+
   _renderFooter = props => (
     <View style={styles.tabbar}>
       {props.navigationState.routes.map((route, index) => {
@@ -152,16 +155,20 @@ export default class TapBar extends React.Component<*, State> {
     return (
 
         <TabViewAnimated
+          ref={(tabView) => {
+            this.tabView = tabView;
+          }}
           style={[styles.container, this.props.style]}
           navigationState={this.state}
           renderScene={this._renderScene}
           renderFooter={this._renderFooter}
-          onIndexChange={this._handleIndexChange}
+          onIndexChange={(key) => this._handleIndexChange(key)}
           animationEnabled={false}
           swipeEnabled={false}
         />
     );
   }
+
 }
 
 const styles = StyleSheet.create({

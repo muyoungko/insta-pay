@@ -58,10 +58,12 @@ export default class Logic{
 
   //static transferMediaToProductInShop(){}
   //static updateProduct(){}
-  static removeProductFromShop(){}
+  //static removeProductFromShop(){}
   //static selectProductFromShop(){}
   //static selectProduct(){}
-  //static updateProduct(){}
+  //static selectMyCart(){}
+  //static selectMyOrder(){}
+  //static selectSellerInfo(){}
   //static selectProductCandidateFromShop(){}
   static selectOrderListFromShop(seller){}
   static selectOrderDetail(orderid){}
@@ -79,6 +81,21 @@ export default class Logic{
   static upsertOrderFromShop(){}
   static selectOrderListFromUser(seller){}
 
+
+  static selectMyCart(token, func)
+  {
+    const db = firebase.database();
+    db.ref('cart/'+token).once('value').then(function(snapshot){
+      func(snapshot.val());
+    });
+  }
+  static selectMyOrder(token, func)
+  {
+    const db = firebase.database();
+    db.ref('orders/byusers/'+token).once('value').then(function(snapshot){
+      func(snapshot.val());
+    });
+  }
   static transferMediaToProductInShop(shopid, media, func){
     const db = firebase.database();
     var self = this;
@@ -165,6 +182,35 @@ export default class Logic{
     });
 
   }
+  static removeProductFromShop(shop, productId, func){
+    const db = firebase.database();
+    var pproduct = {
+      id:productId,
+      removed: true
+    };
+    db.ref('products/'+productId).update(pproduct, function(error){
+
+      db.ref('shops/'+shop+'/products').once('value').then(function(productIdArraySnapshot){
+        var productIdArray = productIdArraySnapshot.val();
+        var products = [];
+        for(var i=0;i<productIdArray.length;i++)
+        {
+          if(productIdArray[i] == productId)
+            continue;
+          products.push(productIdArray[i]);
+        }
+
+        var newshop = {};
+        newshop['products'] = products;
+        db.ref('shops/'+shop).update(newshop, function(error){
+          func(error);
+        });
+      });
+
+
+
+    });
+  }
 
   static selectProduct(productId ,func){
     const db = firebase.database();
@@ -172,6 +218,15 @@ export default class Logic{
       var product = productSnapshot.val();
       func(product);
     });
+  }
+
+  static selectSellerInfo(shop, func)
+  {
+      const db = firebase.database();
+      db.ref('shops/'+shop).once('value').then(function(shopSnapshot){
+        var shop = shopSnapshot.val();
+        func(shop);
+      });
   }
 
   static selectProductFromShop(shopId, func){
@@ -189,6 +244,7 @@ export default class Logic{
       }
     });
   }
+
 
   static selectProductCandidateFromShop(shop, funca){
     const db = firebase.database();

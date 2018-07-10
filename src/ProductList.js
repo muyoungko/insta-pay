@@ -22,14 +22,14 @@ class ProductList extends React.Component<{}> {
      //this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent);
   }
 
-  onNavigatorEvent(event)
-  {
-    switch (event.id) {
-      case 'willAppear':
-        console.log('willAppear');
-        break;
-    }
-  }
+  // onNavigatorEvent(event)
+  // {
+  //   switch (event.id) {
+  //     case 'willAppear':
+  //       console.log('willAppear');
+  //       break;
+  //   }
+  // }
 
   componentDidMount()
   {

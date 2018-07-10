@@ -7,6 +7,7 @@ import queryString from 'query-string';
 import InstaApi from './instaapi/InstaApi.js';
 import Util from './util/Util.js';
 import Logic from './logic/Logic.js';
+import Gnb from './gnb/Gnb.js'
 const Global = require('./Global.js');
 
 
@@ -39,10 +40,7 @@ class ProductDetail extends React.Component<{}> {
 
   }
 
-  onClickBack()
-  {
-    Global.navigation.pop();
-  }
+
   onClickSave()
   {
     var n = parseInt(this.state.price);
@@ -67,11 +65,7 @@ class ProductDetail extends React.Component<{}> {
         }, style: 'cancel'},
         {
           text: '삭제', onPress: () => {
-            var pproduct = {
-              id:self.state.product.id,
-              removed: true
-            };
-            Logic.updateProduct(pproduct, function(error){
+            Logic.removeProductFromShop(Global.shopId, self.state.product.id, function(error){
               Alert.alert('상품이 삭제되었습니다~ 쇼핑몰에서 확인해보세요');
               Global.navigation.pop();
             });
@@ -87,13 +81,8 @@ class ProductDetail extends React.Component<{}> {
 
       <View style={{ backgroundColor: '#ffffff', flex:1}}>
 
-        <View style={{paddingTop: Util.getStatusBarHeight(), height:74, flexDirection: 'column', justifyContent: 'center', alignItems:'center'}}>
-          <Text style={{fontSize:Util.getFontSize(20), color:'#222222'}}> 상품 정보를 입력해주세요~ </Text>
-          <Text style={{position : 'absolute', padding:5, left:10, bottom:12, fontSize:Util.getFontSize(16), color:'#888888'}}
-            onPress={this.onClickBack}
-          > 뒤로 </Text>
-        </View>
-        <View style={{backgroundColor: '#eeeeee', height:1}}></View>
+        <Gnb />
+
 
         <View style={{height:50, flexDirection: 'row', alignItems: 'center'}}>
           <Text style={{left: 20, width : 100, fontSize:Util.getFontSize(18), color:'#222222'}}> 이름 </Text>

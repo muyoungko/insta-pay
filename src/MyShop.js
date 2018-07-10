@@ -3,11 +3,15 @@ import { View, Text, Button, WebView} from 'react-native';
 import {NavigationActions} from 'react-navigation';
 import url from 'url';
 import queryString from 'query-string';
+import Util from './util/Util.js';
+const Global = require('./Global.js');
 
 class MyShop extends React.Component {
   constructor()
   {
     super();
+    var url = 'https://instapay-3aae4.firebaseapp.com/' + Global.shopId;
+    this.state = {url:url};
   }
 
   componentDidMount()
@@ -15,25 +19,28 @@ class MyShop extends React.Component {
 
   }
 
-  static navigationOptions = {
-    title: '인스타 연동을 해주세요~',
-  };
-
-  static navigationOptions = {
-    tabBarLabel: 'Shop'
-  };
 
   render() {
 
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>
-          내 쇼핑몰 미리보기
-        </Text>
+      <View paddingTop={Util.getStatusBarHeight()}
+        style={{backgroundColor: '#ffffff', flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+        <WebView
+          style={{ backgroundColor: '#ffffff', flex: 1}}
+          source={{uri: this.state.url}}
+          onNavigationStateChange={this._onNavigationStateChange.bind(this)}
+          javaScriptEnabled = {true}
+          domStorageEnabled = {true}
+          injectedJavaScript = {this.state.cookie}
+          startInLoadingState={true}
+        />
       </View>
     );
   }
 
+  _onNavigationStateChange(webViewState){
+    //alert(webViewState.url);
+  }
 }
 
 
